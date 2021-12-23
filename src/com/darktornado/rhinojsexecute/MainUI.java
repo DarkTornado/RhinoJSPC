@@ -1,3 +1,5 @@
+package com.darktornado.rhinojsexecute;
+
 import java.awt.Dimension;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -9,7 +11,7 @@ import javax.swing.JMenuItem;
 import java.awt.GridLayout;
 import java.awt.Color;
 
-public class Ui {
+public class MainUI {
 
     public static void main(String[] args) {
         JFrame window = new JFrame("Test Window");
