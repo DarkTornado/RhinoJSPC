@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -14,13 +15,19 @@ public class Ui {
         JFrame window = new JFrame("Test Window");
         window.setLayout(new GridLayout(1, 2, 10, 10));
 
-        JMenuBar bar = new JMenuBar();
-        JMenu menu = new JMenu("Hello");
-        JMenuItem item = new JMenuItem("World");
-        menu.add(item);
-        bar.add(menu);
+        JMenuBar title = new JMenuBar();
+
+        JMenu menu1 = new JMenu("File");
+        JMenuItem item11 = new JMenuItem("Exit");
+        menu1.add(item11);
+        title.add(menu1);
+
+        JMenu menu2 = new JMenu("Run");
+        JMenuItem item21 = new JMenuItem("Run Source");
+        menu2.add(item21);
+        title.add(menu2);
         
-        window.setJMenuBar(bar);
+        window.setJMenuBar(title);
 
 
         JTextArea input = new JTextArea();
