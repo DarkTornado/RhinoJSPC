@@ -1,8 +1,5 @@
 package com.darktornado.rhinojspc;
 
-
-import java.awt.Dimension;
-import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
