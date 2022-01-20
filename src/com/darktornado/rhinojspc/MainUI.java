@@ -17,7 +17,7 @@ public class MainUI {
     	new MainUI().onCreate();
     }
     
-    private JMenuBar createTitleBar() {
+    private JMenuBar createTitleBar(final JTextArea input, final JTextArea output) {
         JMenuBar title = new JMenuBar();
 
         JMenu menu1 = new JMenu("File");
@@ -32,6 +32,12 @@ public class MainUI {
 
         JMenu menu2 = new JMenu("Run");
         JMenuItem item21 = new JMenuItem("Run Source");
+        item21.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String src = input.getText();
+        		System.out.println(src);
+        	}
+        });
         menu2.add(item21);
         title.add(menu2);
 
@@ -43,9 +49,6 @@ public class MainUI {
         JFrame window = new JFrame("JS Executor via Rhino");
         window.setLayout(new GridLayout(1, 2, 10, 10));
 
-        JMenuBar title = createTitleBar();
-        window.setJMenuBar(title);
-
         JTextArea input = new JTextArea();
         input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         window.add(input);
@@ -53,10 +56,14 @@ public class MainUI {
         output.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         window.add(output);
 
+        JMenuBar title = createTitleBar(input, output);
+        window.setJMenuBar(title);
+        
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(400, 300);
         window.setVisible(true);
     }
+    
 
 }
