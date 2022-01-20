@@ -1,4 +1,5 @@
-package com.darktornado.rhinojsexecute;
+package com.darktornado.rhinojspc;
+
 
 import java.awt.Dimension;
 import javax.swing.AbstractAction;
@@ -9,18 +10,26 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class MainUI {
 
     public static void main(String[] args) {
-        JFrame window = new JFrame("Test Window");
-        window.setLayout(new GridLayout(1, 2, 10, 10));
-
+    	new MainUI().onCreate();
+    }
+    
+    private JMenuBar createTitleBar() {
         JMenuBar title = new JMenuBar();
 
         JMenu menu1 = new JMenu("File");
         JMenuItem item11 = new JMenuItem("Exit");
+        item11.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.exit(0);
+        	}
+        });
         menu1.add(item11);
         title.add(menu1);
 
@@ -28,9 +37,17 @@ public class MainUI {
         JMenuItem item21 = new JMenuItem("Run Source");
         menu2.add(item21);
         title.add(menu2);
-        
-        window.setJMenuBar(title);
 
+        return title;
+    	
+    }
+    
+    private void onCreate() {
+        JFrame window = new JFrame("JS Executor via Rhino");
+        window.setLayout(new GridLayout(1, 2, 10, 10));
+
+        JMenuBar title = createTitleBar();
+        window.setJMenuBar(title);
 
         JTextArea input = new JTextArea();
         input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
