@@ -17,12 +17,14 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class MainUI {
+	
+	public static JTextArea output = null;
 
     public static void main(String[] args) {
         new MainUI().onCreate();
     }
 
-    private JMenuBar createTitleBar(final JTextArea input, final JTextArea output) {
+    private JMenuBar createTitleBar(final JTextArea input) {
         JMenuBar title = new JMenuBar();
 
         JMenu menu1 = new JMenu("File");
@@ -41,7 +43,7 @@ public class MainUI {
             public void actionPerformed(ActionEvent e) {
                 String src = input.getText();
                 String result = runScript(src);
-                output.setText(result);
+                output.append(result);
             }
         });
         menu2.add(item21);
@@ -58,11 +60,11 @@ public class MainUI {
         JTextArea input = new JTextArea();
         input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         window.add(input);
-        JTextArea output = new JTextArea();
+        output = new JTextArea();
         output.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         window.add(output);
 
-        JMenuBar title = createTitleBar(input, output);
+        JMenuBar title = createTitleBar(input);
         window.setJMenuBar(title);
 
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -77,6 +79,7 @@ public class MainUI {
             rhino.setOptimizationLevel(-1);
             rhino.setLanguageVersion(Context.VERSION_ES6);
             ScriptableObject scope = new ImporterTopLevel(rhino);
+            ScriptableObject.defineClass(scope, Api.class);
             String result = String.valueOf(rhino.evaluateString(scope, src, "JavaScript", 1, null));
             Context.exit();
             return result;
