@@ -59,9 +59,13 @@ public class MainUI {
 
         JTextArea input = new JTextArea();
         input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        input.setLineWrap(true);
+        input.setWrapStyleWord(true);
         window.add(input);
         output = new JTextArea();
         output.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        output.setLineWrap(true);
+        output.setWrapStyleWord(true);
         window.add(output);
 
         JMenuBar title = createTitleBar(input);
